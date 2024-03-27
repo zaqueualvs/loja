@@ -5,7 +5,7 @@ import com.alves.lojarest.adapter.in.rest.data.response.TagResponse;
 import com.alves.lojarest.application.domain.models.Tag;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring", uses = ProductRestMapper.class)
+@Mapper(componentModel = "spring")
 public interface TagRestMapper {
     Tag toDomain(TagRequest tagRequest);
 
