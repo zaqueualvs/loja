@@ -15,5 +15,5 @@ import java.util.Set;
 public class TagResponse {
     private Long id;
     private String name;
-    private Set<ProductResponse> products = new HashSet<>();
+    private Set<ProductTagResponse> products = new HashSet<>();
 }

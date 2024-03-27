@@ -12,11 +12,10 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-public class ProductResponse {
+public class ProductTagResponse {
     private Long id;
     private String name;
     private String description;
     private String targetMarket;
-    private Set<TagProductResponse> tags = new HashSet<>();
 
 }
