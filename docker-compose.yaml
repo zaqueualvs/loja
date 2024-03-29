@@ -4,17 +4,17 @@ services:
     image: rabbitmq:3-management-alpine
     container_name: 'rabbitmq'
     ports:
-        - 5672:5672
-        - 15672:15672
+      - 5672:5672
+      - 15672:15672
     volumes:
-        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
     environment:
-        - RABBITMQ_DEFAULT_USER=admin
-        - RABBITMQ_DEFAULT_PASS=admin123
-    restart: always
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin123
     networks:
-        - rabbitmq_go_net
+      - rabbitmq_go_net
+    restart: always
 
   loja-log:
     container_name: 'loja-log'
@@ -22,6 +22,9 @@ services:
       context: ./loja-log/
       dockerfile: Dockerfile
     image: loja-log:latest
+    depends_on:
+      - rabbitmq
+    network_mode: "host"
 
   loja-rest:
     container_name: 'loja-rest'
@@ -31,6 +34,9 @@ services:
     image: loja-rest:latest
     ports:
       - 8080:8080
+    depends_on:
+      - rabbitmq
+    network_mode: "host"
 
 networks:
   rabbitmq_go_net:
