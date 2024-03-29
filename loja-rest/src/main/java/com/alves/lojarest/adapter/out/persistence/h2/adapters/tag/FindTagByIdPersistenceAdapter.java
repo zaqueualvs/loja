@@ -6,12 +6,12 @@ import com.alves.lojarest.adapter.out.persistence.h2.mappers.TagPersistenceMappe
 import com.alves.lojarest.adapter.out.persistence.h2.repositories.TagRepository;
 import com.alves.lojarest.application.domain.models.Tag;
 import com.alves.lojarest.application.ports.out.tag.FindTagByIdPort;
-import com.alves.lojarest.common.PersistenceAdapter;
+import com.alves.lojarest.common.EventPublisher;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;
 
-@PersistenceAdapter
+@EventPublisher
 @RequiredArgsConstructor
 public class FindTagByIdPersistenceAdapter implements FindTagByIdPort {
 

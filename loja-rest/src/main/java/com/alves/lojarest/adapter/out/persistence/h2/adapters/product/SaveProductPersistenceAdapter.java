@@ -7,10 +7,10 @@ import com.alves.lojarest.adapter.out.persistence.h2.mappers.ProductPersistenceM
 import com.alves.lojarest.adapter.out.persistence.h2.repositories.ProductRepository;
 import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.ports.out.product.SaveProductPort;
-import com.alves.lojarest.common.PersistenceAdapter;
+import com.alves.lojarest.common.EventPublisher;
 import lombok.RequiredArgsConstructor;
 
-@PersistenceAdapter
+@EventPublisher
 @RequiredArgsConstructor
 public class SaveProductPersistenceAdapter implements SaveProductPort {
 

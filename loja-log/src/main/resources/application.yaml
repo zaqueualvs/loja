@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: loja-log
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin123
+
+rabbitmq:
+  queue:
+    name: loja

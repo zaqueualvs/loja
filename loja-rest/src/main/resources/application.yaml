@@ -21,3 +21,17 @@ spring:
 
   flyway:
     locations: classpath:db/migration,classpath:db/testdata
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin123
+
+rabbitmq:
+  queue:
+    name: loja
+  exchange:
+    name: loja_exchange
+  routingKey:
+    name: loja_routing_key

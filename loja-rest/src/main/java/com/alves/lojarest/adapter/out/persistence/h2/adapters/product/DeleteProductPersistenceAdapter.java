@@ -6,9 +6,9 @@ import com.alves.lojarest.adapter.out.persistence.h2.repositories.ProductReposit
 import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.ports.out.product.DeleteProductPort;
 import lombok.RequiredArgsConstructor;
-import com.alves.lojarest.common.PersistenceAdapter;
+import com.alves.lojarest.common.EventPublisher;
 
-@PersistenceAdapter
+@EventPublisher
 @RequiredArgsConstructor
 public class DeleteProductPersistenceAdapter implements DeleteProductPort {
 
