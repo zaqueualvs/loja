@@ -1,6 +1,5 @@
 package com.alves.lojarest.adapter.out.persistence.h2.adapters.product;
 
-import com.alves.lojarest.adapter.out.persistence.h2.mappers.CycleAvoidingMappingContext;
 import com.alves.lojarest.adapter.out.persistence.h2.mappers.ProductPersistenceMapper;
 import com.alves.lojarest.adapter.out.persistence.h2.repositories.ProductRepository;
 import com.alves.lojarest.application.domain.models.Product;
@@ -21,7 +20,7 @@ public class FindAllProductPersistenceAdapter implements FindAllProductPort {
     public List<Product> findAll() {
         return productRepository.findAll()
                 .stream()
-                .map(productEntity -> productPersistenceMapper.toDomain(productEntity, new CycleAvoidingMappingContext()))
+                .map(productPersistenceMapper::toDomain)
                 .toList();
     }
 }

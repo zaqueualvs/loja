@@ -1,4 +1,3 @@
-version: "3.2"
 services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -15,6 +14,16 @@ services:
     networks:
       - rabbitmq_go_net
     restart: always
+
+  cache:
+    image: redis:7.2.1-alpine
+    container_name: 'redis'
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --save 20 1 --loglevel warning --requirepass redis123
+    volumes:
+      - cache:/data
 
   loja-log:
     container_name: 'loja-log'
@@ -36,8 +45,13 @@ services:
       - 8080:8080
     depends_on:
       - rabbitmq
+      - cache
     network_mode: "host"
 
 networks:
   rabbitmq_go_net:
     driver: bridge
+
+volumes:
+  cache:
+    driver: local

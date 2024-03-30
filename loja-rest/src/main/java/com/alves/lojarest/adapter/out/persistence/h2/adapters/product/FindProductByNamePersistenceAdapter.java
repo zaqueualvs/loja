@@ -1,8 +1,7 @@
 package com.alves.lojarest.adapter.out.persistence.h2.adapters.product;
 
-import com.alves.lojarest.adapter.out.persistence.h2.entities.ProductEntity;
-import com.alves.lojarest.adapter.out.persistence.h2.mappers.CycleAvoidingMappingContext;
 import com.alves.lojarest.adapter.out.persistence.h2.mappers.ProductPersistenceMapper;
+import com.alves.lojarest.adapter.out.persistence.h2.entities.ProductEntity;
 import com.alves.lojarest.adapter.out.persistence.h2.repositories.ProductRepository;
 import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.ports.out.product.FindProductByNamePort;
@@ -24,7 +23,7 @@ public class FindProductByNamePersistenceAdapter implements FindProductByNamePor
         if (productEntityO.isEmpty()) {
             return Optional.empty();
         }
-        Product product = productPersistenceMapper.toDomain(productEntityO.get(), new CycleAvoidingMappingContext());
+        Product product = productPersistenceMapper.toDomain(productEntityO.get());
         return Optional.of(product);
     }
 }

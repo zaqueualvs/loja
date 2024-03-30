@@ -1,6 +1,5 @@
 package com.alves.lojarest.adapter.out.persistence.h2.adapters.tag;
 
-import com.alves.lojarest.adapter.out.persistence.h2.mappers.CycleAvoidingMappingContext;
 import com.alves.lojarest.adapter.out.persistence.h2.mappers.TagPersistenceMapper;
 import com.alves.lojarest.adapter.out.persistence.h2.repositories.TagRepository;
 import com.alves.lojarest.application.domain.models.Tag;
@@ -21,7 +20,7 @@ public class FindAllTagPersistenceAdapter implements FindAllTagPort {
     public List<Tag> findAll() {
         return tagRepository.findAll()
                 .stream()
-                .map(tagEntity -> tagPersistenceMapper.toDomain(tagEntity, new CycleAvoidingMappingContext()))
+                .map(tagPersistenceMapper::toDomain)
                 .toList();
     }
 }

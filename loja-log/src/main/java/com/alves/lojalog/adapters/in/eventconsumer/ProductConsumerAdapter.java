@@ -10,9 +10,9 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 @Slf4j
 public class ProductConsumerAdapter implements ProductEventeConsumerUseCase {
     @Override
-    @RabbitListener(queues = "${rabbitmq.queue.name}")
+    @RabbitListener(queues = "${rabbitmq.queue.product.name}")
     public void consumer(ProductEvent productEvent) {
-        log.info(String.format("Consummer message %s", productEvent));
+        log.info(String.format("Consummer product event message -> %s", productEvent));
     }
 
 }

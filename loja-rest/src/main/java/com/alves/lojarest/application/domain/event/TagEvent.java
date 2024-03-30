@@ -4,16 +4,16 @@ import java.time.OffsetDateTime;
 
 public class TagEvent {
 
-    private String message;
+    private String action;
     private OffsetDateTime data;
 
-    public TagEvent(String message) {
-        this.message = message;
+    public TagEvent(String action) {
+        this.action = action;
         data = OffsetDateTime.now();
     }
 
-    public String getMessage() {
-        return message;
+    public String getAction() {
+        return action;
     }
 
     public OffsetDateTime getData() {

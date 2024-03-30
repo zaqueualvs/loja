@@ -1,7 +1,9 @@
 package com.alves.lojarest.application.domain.services.product;
 
+import com.alves.lojarest.application.domain.event.ProductEvent;
 import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.ports.in.product.FindAllProductUseCase;
+import com.alves.lojarest.application.ports.out.event.ProductEventPublisherPort;
 import com.alves.lojarest.application.ports.out.product.FindAllProductPort;
 import com.alves.lojarest.common.UseCase;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +15,11 @@ import java.util.List;
 public class FindAllProductService implements FindAllProductUseCase {
 
     private final FindAllProductPort findAllProductPort;
+    private final ProductEventPublisherPort productEventPublisherPort;
 
     @Override
     public List<Product> findAll() {
+        productEventPublisherPort.publisherEvent(new ProductEvent("FindAllProductService.findAll()"));
         return findAllProductPort.findAll();
     }
 }

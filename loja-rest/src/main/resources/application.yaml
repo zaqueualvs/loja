@@ -28,10 +28,24 @@ spring:
     username: admin
     password: admin123
 
+  cache:
+    type: redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: redis123
+
 rabbitmq:
-  queue:
-    name: loja
   exchange:
     name: loja_exchange
+  queue:
+    product:
+      name: loja_product
+    tag:
+      name: loja_tag
   routingKey:
-    name: loja_routing_key
+    product:
+      name: loja_routing_key_product
+    tag:
+      name: loja_routing_key_tag

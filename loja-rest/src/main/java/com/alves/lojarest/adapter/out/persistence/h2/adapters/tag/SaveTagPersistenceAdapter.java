@@ -1,7 +1,6 @@
 package com.alves.lojarest.adapter.out.persistence.h2.adapters.tag;
 
 import com.alves.lojarest.adapter.out.persistence.h2.entities.TagEntity;
-import com.alves.lojarest.adapter.out.persistence.h2.mappers.CycleAvoidingMappingContext;
 import com.alves.lojarest.adapter.out.persistence.h2.mappers.TagPersistenceMapper;
 import com.alves.lojarest.adapter.out.persistence.h2.repositories.TagRepository;
 import com.alves.lojarest.application.domain.models.Tag;
@@ -19,7 +18,7 @@ public class SaveTagPersistenceAdapter implements SaveTagPort {
     public Tag save(Tag tag) {
         TagEntity tagEntity = tagPersistenceMapper.toEntity(tag);
         tagEntity = tagRepository.save(tagEntity);
-        tag = tagPersistenceMapper.toDomain(tagEntity, new CycleAvoidingMappingContext());
+        tag = tagPersistenceMapper.toDomain(tagEntity);
         return tag;
     }
 }

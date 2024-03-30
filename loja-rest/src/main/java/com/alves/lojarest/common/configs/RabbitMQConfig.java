@@ -12,17 +12,22 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    @Value("${rabbitmq.queue.name}")
-    private String queue;
+    @Value("${rabbitmq.queue.product.name}")
+    private String queueProduct;
+    @Value("${rabbitmq.queue.tag.name}")
+    private String queueTag;
     @Value("${rabbitmq.exchange.name}")
     private String exchange;
-    @Value("${rabbitmq.routingKey.name}")
-    private String routingKey;
+    @Value("${rabbitmq.routingKey.product.name}")
+    private String routingKeyProduct;
+    @Value("${rabbitmq.routingKey.tag.name}")
+    private String routingKeyTag;
 
     @Bean
     public MessageConverter messageConverter() {
         return new Jackson2JsonMessageConverter();
     }
+
     @Bean
     public AmqpTemplate amqpTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
@@ -31,8 +36,12 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Queue queue() {
-        return new Queue(queue);
+    public Queue queueProduct() {
+        return new Queue(queueProduct);
+    }
+    @Bean
+    public Queue queueTag() {
+        return new Queue(queueTag);
     }
 
     @Bean
@@ -41,10 +50,17 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Binding binding() {
-        return BindingBuilder.bind(queue())
+    public Binding binding_product() {
+        return BindingBuilder.bind(queueProduct())
                 .to(exchange())
-                .with(routingKey);
+                .with(routingKeyProduct);
+    }
+
+    @Bean
+    public Binding binding_tag() {
+        return BindingBuilder.bind(queueTag())
+                .to(exchange())
+                .with(routingKeyTag);
     }
 
 }

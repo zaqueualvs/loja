@@ -1,14 +1,19 @@
 package com.alves.lojarest.adapter.out.persistence.h2.mappers;
 
+import com.alves.lojarest.adapter.out.persistence.h2.entities.ProductEntity;
 import com.alves.lojarest.adapter.out.persistence.h2.entities.TagEntity;
+import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.domain.models.Tag;
-import org.mapstruct.Context;
+import com.alves.lojarest.common.mappers.AbstractPersistenceMapper;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface TagPersistenceMapper {
+public interface TagPersistenceMapper extends AbstractPersistenceMapper<Tag, TagEntity> {
 
-    Tag toDomain(TagEntity tagEntity, @Context CycleAvoidingMappingContext context);
+    @Mapping(target = "tags", ignore = true)
+    Product productEntityToProduct(ProductEntity productEntity);
 
-    TagEntity toEntity(Tag tag);
+    @Mapping(target = "tags", ignore = true)
+    ProductEntity tagToTagEntity(Product product);
 }

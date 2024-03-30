@@ -10,4 +10,7 @@ spring:
 
 rabbitmq:
   queue:
-    name: loja
+    product:
+      name: loja_product
+    tag:
+      name: loja_tag

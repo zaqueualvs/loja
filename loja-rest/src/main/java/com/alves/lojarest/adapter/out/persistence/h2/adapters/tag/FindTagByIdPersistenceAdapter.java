@@ -1,7 +1,6 @@
 package com.alves.lojarest.adapter.out.persistence.h2.adapters.tag;
 
 import com.alves.lojarest.adapter.out.persistence.h2.entities.TagEntity;
-import com.alves.lojarest.adapter.out.persistence.h2.mappers.CycleAvoidingMappingContext;
 import com.alves.lojarest.adapter.out.persistence.h2.mappers.TagPersistenceMapper;
 import com.alves.lojarest.adapter.out.persistence.h2.repositories.TagRepository;
 import com.alves.lojarest.application.domain.models.Tag;
@@ -24,7 +23,7 @@ public class FindTagByIdPersistenceAdapter implements FindTagByIdPort {
         if (tagEntityO.isEmpty()) {
             return Optional.empty();
         }
-        Tag tag = tagPersistenceMapper.toDomain(tagEntityO.get(), new CycleAvoidingMappingContext());
+        Tag tag = tagPersistenceMapper.toDomain(tagEntityO.get());
         return Optional.of(tag);
     }
 }
