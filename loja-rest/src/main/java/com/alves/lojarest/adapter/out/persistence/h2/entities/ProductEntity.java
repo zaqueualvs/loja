@@ -25,7 +25,7 @@ public class ProductEntity implements Serializable {
     private String name;
     private String description;
     private String targetMarket;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "product_tag",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))

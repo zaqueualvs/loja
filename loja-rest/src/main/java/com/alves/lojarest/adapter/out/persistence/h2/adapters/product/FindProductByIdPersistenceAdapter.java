@@ -5,7 +5,7 @@ import com.alves.lojarest.adapter.out.persistence.h2.entities.ProductEntity;
 import com.alves.lojarest.adapter.out.persistence.h2.repositories.ProductRepository;
 import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.ports.out.product.FindProductByIdPort;
-import com.alves.lojarest.common.EventPublisher;
+import com.alves.lojarest.common.customannotations.EventPublisher;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;

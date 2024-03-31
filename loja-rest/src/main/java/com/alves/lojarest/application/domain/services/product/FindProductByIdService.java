@@ -6,7 +6,7 @@ import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.ports.in.product.FindProductByIdUseCase;
 import com.alves.lojarest.application.ports.out.event.ProductEventPublisherPort;
 import com.alves.lojarest.application.ports.out.product.FindProductByIdPort;
-import com.alves.lojarest.common.UseCase;
+import com.alves.lojarest.common.customannotations.UseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 

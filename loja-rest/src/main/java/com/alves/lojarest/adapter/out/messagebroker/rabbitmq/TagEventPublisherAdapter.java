@@ -2,7 +2,7 @@ package com.alves.lojarest.adapter.out.messagebroker.rabbitmq;
 
 import com.alves.lojarest.application.domain.event.TagEvent;
 import com.alves.lojarest.application.ports.out.event.TagEventPublisherPort;
-import com.alves.lojarest.common.EventPublisher;
+import com.alves.lojarest.common.customannotations.EventPublisher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

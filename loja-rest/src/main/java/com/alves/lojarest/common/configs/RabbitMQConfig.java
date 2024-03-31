@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
+    @Value("${rabbitmq.exchange.name}")
+    private String exchange;
     @Value("${rabbitmq.queue.product.name}")
     private String queueProduct;
     @Value("${rabbitmq.queue.tag.name}")
     private String queueTag;
-    @Value("${rabbitmq.exchange.name}")
-    private String exchange;
     @Value("${rabbitmq.routingKey.product.name}")
     private String routingKeyProduct;
     @Value("${rabbitmq.routingKey.tag.name}")
@@ -39,6 +39,7 @@ public class RabbitMQConfig {
     public Queue queueProduct() {
         return new Queue(queueProduct);
     }
+
     @Bean
     public Queue queueTag() {
         return new Queue(queueTag);

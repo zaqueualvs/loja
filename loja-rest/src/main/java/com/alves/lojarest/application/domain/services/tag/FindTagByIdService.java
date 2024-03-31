@@ -6,7 +6,7 @@ import com.alves.lojarest.application.domain.models.Tag;
 import com.alves.lojarest.application.ports.in.tag.FindTagByIdUseCase;
 import com.alves.lojarest.application.ports.out.event.TagEventPublisherPort;
 import com.alves.lojarest.application.ports.out.tag.FindTagByIdPort;
-import com.alves.lojarest.common.UseCase;
+import com.alves.lojarest.common.customannotations.UseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 

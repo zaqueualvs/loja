@@ -1,4 +1,4 @@
-package com.alves.lojarest.common;
+package com.alves.lojarest.common.customannotations;
 
 import org.springframework.stereotype.Component;
 
@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Component
-public @interface EventPublisher {
+public @interface Producer {
     String value() default "";
 
 }
