@@ -4,6 +4,7 @@ import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.domain.models.page.ProductPage;
 import com.alves.lojarest.application.ports.out.event.ProductEventPublisherPort;
 import com.alves.lojarest.application.ports.out.product.FindAllProductPort;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,12 +29,7 @@ class FindAllProductServiceTest {
 
     @Test
     public void findAllProducs_whenExistProducs() {
-        List<Product> products = List.of(
-                new Product(),
-                new Product(),
-                new Product(),
-                new Product()
-        );
+        List<Product> products = Instancio.stream(Product.class).limit(4).toList();
         ProductPage productPage = new ProductPage(products, Long.parseLong(String.valueOf(products.size())), 1);
         when(findAllProductPort.findAll(anyInt(), anyInt())).thenReturn(productPage);
         ProductPage newProductPage = findAllProductService.findAll(1, 4);
