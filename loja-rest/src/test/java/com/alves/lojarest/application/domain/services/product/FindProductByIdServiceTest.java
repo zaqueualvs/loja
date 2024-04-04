@@ -4,6 +4,7 @@ import com.alves.lojarest.application.domain.exceptions.ProductNotFoundException
 import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.ports.out.event.ProductEventPublisherPort;
 import com.alves.lojarest.application.ports.out.product.FindProductByIdPort;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -30,7 +31,7 @@ class FindProductByIdServiceTest {
 
     @Test
     public void findProductWithId_WhenExistsReturnProduct() {
-        Product product = new Product(7L, "Sapato", "Calçado para usar nos pes", "todas as pessoas", new HashSet<>());
+        Product product = Instancio.create(Product.class);
         when(findProductByIdPort.findById(product.getId())).thenReturn(Optional.of(product));
 
         Product newProduct = findProductByIdService.findById(product.getId());

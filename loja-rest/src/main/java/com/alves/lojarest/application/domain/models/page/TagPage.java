@@ -1,12 +1,12 @@
 package com.alves.lojarest.application.domain.models.page;
 
-import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.domain.models.Tag;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TagPage {
+public class TagPage implements Serializable {
 
     private List<Tag> tags = new ArrayList<>();
     private Long totalElements;

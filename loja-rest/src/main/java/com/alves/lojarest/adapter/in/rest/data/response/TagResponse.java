@@ -1,20 +1,20 @@
 package com.alves.lojarest.adapter.in.rest.data.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-public class TagResponse implements Serializable {
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
+public class TagResponse extends RepresentationModel<TagResponse> implements Serializable {
+    @EqualsAndHashCode.Include
     private Long id;
     private String name;
-    private Set<ProductTagResponse> products = new HashSet<>();
+    private List<ProductTagResponse> products = new ArrayList<>();
 }

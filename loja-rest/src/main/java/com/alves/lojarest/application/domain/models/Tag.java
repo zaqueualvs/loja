@@ -1,20 +1,18 @@
 package com.alves.lojarest.application.domain.models;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Tag implements Serializable {
 
     private Long id;
     private String name;
-    private Set<Product> products = new HashSet<>();
+    private List<Product> products = new ArrayList<>();
 
     public Tag() {
     }
 
-    public Tag(Long id, String name, Set<Product> products) {
+    public Tag(Long id, String name, List<Product> products) {
         this.id = id;
         this.name = name;
         this.products = products;
@@ -36,11 +34,11 @@ public class Tag implements Serializable {
         this.name = name;
     }
 
-    public Set<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 

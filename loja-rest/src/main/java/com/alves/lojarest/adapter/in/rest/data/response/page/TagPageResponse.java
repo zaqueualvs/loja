@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-public class TagPageResponse {
+public class TagPageResponse implements Serializable {
 
-    private List<TagResponse> tag = new ArrayList<>();
+    private List<TagResponse> tags = new ArrayList<>();
     private Long totalElements;
     private Integer totalPages;
 

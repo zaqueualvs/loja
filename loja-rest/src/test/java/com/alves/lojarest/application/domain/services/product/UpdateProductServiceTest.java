@@ -3,6 +3,7 @@ package com.alves.lojarest.application.domain.services.product;
 import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.ports.out.event.ProductEventPublisherPort;
 import com.alves.lojarest.application.ports.out.product.UpdateProductPort;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,7 +27,7 @@ class UpdateProductServiceTest {
     private UpdateProductService updateProductService;
     @Test
     public void updateProduct() {
-        Product product = new Product(32L, "Sandalia", "Tipo de calçado para o pé", "Todas as pessoas", new HashSet<>());
+        Product product = Instancio.create(Product.class);
         when(updateProductPort.update(product)).thenReturn(product);
         Product newProduct = updateProductService.update(product);
 

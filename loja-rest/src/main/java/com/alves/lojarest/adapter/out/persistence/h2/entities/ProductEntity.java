@@ -1,6 +1,5 @@
 package com.alves.lojarest.adapter.out.persistence.h2.entities;
 
-import com.alves.lojarest.application.domain.models.Tag;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,9 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,5 +27,5 @@ public class ProductEntity implements Serializable {
     @JoinTable(name = "product_tag",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    private Set<TagEntity> tags = new HashSet<>();
+    private List<TagEntity> tags = new ArrayList<>();
 }

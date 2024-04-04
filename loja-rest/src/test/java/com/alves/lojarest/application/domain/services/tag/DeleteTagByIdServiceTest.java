@@ -6,6 +6,7 @@ import com.alves.lojarest.application.domain.models.Tag;
 import com.alves.lojarest.application.ports.in.tag.FindTagByIdUseCase;
 import com.alves.lojarest.application.ports.out.event.TagEventPublisherPort;
 import com.alves.lojarest.application.ports.out.tag.DeleteTagPort;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,9 +36,9 @@ class DeleteTagByIdServiceTest {
 
     @Test
     public void deleteTag_WhenItExists() {
-        Tag tag = new Tag(1L, "Java", new HashSet<>());
-        when(findTagByIdUseCase.findById(anyLong())).thenReturn(tag);
-        deleteTagByIdService.deleteById(anyLong());
+        Tag tag = Instancio.create(Tag.class);
+        when(findTagByIdUseCase.findById(tag.getId())).thenReturn(tag);
+        deleteTagByIdService.deleteById(tag.getId());
         verify(findTagByIdUseCase, times(1)).findById(anyLong());
         verify(deleteTagPort, times(1)).delete(tag);
         verifyNoMoreInteractions(findTagByIdUseCase);
@@ -46,7 +47,7 @@ class DeleteTagByIdServiceTest {
 
     @Test
     public void deleteTag_WhenItDoesntExist() {
-        Tag tag = new Tag(1L, "Java", new HashSet<>());
+        Tag tag = Instancio.create(Tag.class);
         when(findTagByIdUseCase.findById(anyLong())).thenThrow(TagNotFoundException.class);
         assertThrows(TagNotFoundException.class, () -> deleteTagByIdService.deleteById(anyLong()));
         verify(findTagByIdUseCase, times(1)).findById(anyLong());

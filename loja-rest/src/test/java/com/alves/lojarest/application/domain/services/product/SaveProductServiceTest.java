@@ -3,6 +3,7 @@ package com.alves.lojarest.application.domain.services.product;
 import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.ports.out.event.ProductEventPublisherPort;
 import com.alves.lojarest.application.ports.out.product.SaveProductPort;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,7 +29,7 @@ class SaveProductServiceTest {
 
     @Test
     public void saveProduct() {
-        Product product = new Product(99L, "Sandalia", "Tipo de calçado para o pé", "Todas as pessoas", new HashSet<>());
+        Product product = Instancio.create(Product.class);
         when(saveProductPort.save(product)).thenReturn(product);
         Product newProduct = saveProductService.save(product);
 

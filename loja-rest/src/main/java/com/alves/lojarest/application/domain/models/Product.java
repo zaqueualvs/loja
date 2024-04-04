@@ -1,9 +1,9 @@
 package com.alves.lojarest.application.domain.models;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class Product implements Serializable {
 
@@ -11,12 +11,12 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private String targetMarket;
-    private Set<Tag> tags = new HashSet<>();
+    private List<Tag> tags = new ArrayList<>();
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description, String targetMarket, Set<Tag> tags) {
+    public Product(Long id, String name, String description, String targetMarket, List<Tag> tags) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -56,11 +56,11 @@ public class Product implements Serializable {
         this.targetMarket = targetMarket;
     }
 
-    public Set<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(Set<Tag> tags) {
+    public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
 
