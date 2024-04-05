@@ -7,10 +7,10 @@ import com.alves.lojarest.adapter.in.rest.mappers.ProductRestMapper;
 import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.domain.models.page.ProductPage;
 import com.alves.lojarest.application.ports.in.product.*;
+import com.alves.lojarest.common.hateoas.ProductHateoasLink;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +27,7 @@ public class ProductController {
     private final DeleteProductByIdUseCase deleteProductByIdUseCase;
     private final UpdateProductUseCase updateProductUseCase;
     private final ProductRestMapper productRestMapper;
+    private final ProductHateoasLink productHateoasLink;
 
 
     @GetMapping
@@ -36,6 +37,7 @@ public class ProductController {
     ) {
         ProductPage productPage = findAllProductUseCase.findAll(page, size);
         ProductPageResponse productPageResponse = productRestMapper.toPageResponse(productPage);
+        productPageResponse.getProducts().forEach(productHateoasLink::addLinkToProductRespose);
         return ResponseEntity.status(HttpStatus.OK).body(productPageResponse);
     }
 

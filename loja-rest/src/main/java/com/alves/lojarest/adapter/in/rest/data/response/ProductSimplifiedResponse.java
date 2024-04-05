@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
-public class ProductTagResponse extends RepresentationModel<ProductTagResponse> implements Serializable {
+public class ProductSimplifiedResponse extends RepresentationModel<ProductSimplifiedResponse> implements Serializable {
     @EqualsAndHashCode.Include
     private Long id;
     private String name;

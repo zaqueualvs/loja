@@ -11,13 +11,12 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 public class ProductResponse extends RepresentationModel<ProductResponse> implements Serializable {
     @EqualsAndHashCode.Include
     private Long id;
     private String name;
     private String description;
     private String targetMarket;
-    private List<TagProductResponse> tags = new ArrayList<>();
-
+    private List<TagSimplifiedResponse> tags = new ArrayList<>();
 }
