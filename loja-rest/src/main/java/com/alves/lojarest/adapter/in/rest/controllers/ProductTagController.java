@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@io.swagger.v3.oas.annotations.tags.Tag(name = "ProductTag", description = "api for add tag to product")
 @RestController
 @RequestMapping(value = "products/{productId}/tags/{tagId}")
 @AllArgsConstructor

@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@io.swagger.v3.oas.annotations.tags.Tag(name = "Tag", description = "api tag operations")
 @RestController
 @RequestMapping(value = "tags")
 @RequiredArgsConstructor
