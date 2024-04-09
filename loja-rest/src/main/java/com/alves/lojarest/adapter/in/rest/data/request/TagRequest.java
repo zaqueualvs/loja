@@ -1,5 +1,6 @@
 package com.alves.lojarest.adapter.in.rest.data.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,5 +13,6 @@ import java.io.Serializable;
 @Setter
 @Getter
 public class TagRequest implements Serializable {
+    @NotBlank
     private String name;
 }
