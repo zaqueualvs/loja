@@ -215,8 +215,8 @@ public class ExceptionHandle extends ResponseEntityExceptionHandler {
                                                             HttpStatusCode status,
                                                             WebRequest request) {
         ProblemType problemType = ProblemType.INVALID_DATA;
-        String detail = String.format("One or more fields are invalid. Please fill in " +
-                "correct and try again");
+        String detail = "One or more fields are invalid. Please fill in " +
+                "correct and try again";
 
         List<Problem.Object> problemObjects = bindingResult.getAllErrors()
                 .stream()
@@ -235,8 +235,7 @@ public class ExceptionHandle extends ResponseEntityExceptionHandler {
 
 
         Problem problem = createProblemBuilder(HttpStatus.valueOf(status.value()), problemType, detail)
-                .userMessage("Um ou mais campos estão inválidos. Faça o preenchimento " +
-                        "correto e tente novamente")
+                .userMessage(detail)
                 .objects(problemObjects)
                 .build();
 
