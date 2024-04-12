@@ -1,7 +1,9 @@
 package com.alves.lojarest.common.exception;
 
+import com.alves.lojarest.application.domain.exceptions.EntityAlreadyAddedException;
 import com.alves.lojarest.application.domain.exceptions.EntityInUseException;
 import com.alves.lojarest.application.domain.exceptions.EntityNotFoundException;
+import com.alves.lojarest.application.domain.exceptions.EntityNotUsedException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.fasterxml.jackson.databind.exc.PropertyBindingException;
@@ -18,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -44,6 +47,17 @@ public class ExceptionHandle extends ResponseEntityExceptionHandler {
         this.messageSource = messageSource;
     }
 
+
+    @Override
+    protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+
+        ProblemType problemType = ProblemType.METHOD_NOT_SUPPORTED;
+        String detail = String.format("The method %s you tried to access is not allowed", ex.getMethod()) ;
+        Problem problem = createProblemBuilder(HttpStatus.valueOf(status.value()), problemType, detail)
+                .userMessage("access not permitted")
+                .build();
+        return handleExceptionInternal(ex, problem, headers,status,request);
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleUnknown(Exception ex,
@@ -170,10 +184,34 @@ public class ExceptionHandle extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
     }
 
+    @ExceptionHandler(EntityAlreadyAddedException.class)
+    public ResponseEntity<Object> handleEntityAlreadyAddedException(EntityAlreadyAddedException ex,
+                                                             WebRequest request) {
+        HttpStatus status = HttpStatus.CONFLICT;
+        ProblemType problemType = ProblemType.ENTITY_IN_USE;
+        String detail = ex.getMessage();
+        Problem problem = createProblemBuilder(status, problemType, detail)
+                .userMessage(detail)
+                .build();
+        return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+    }
+
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException ex,
                                                            WebRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
+        ProblemType problemType = ProblemType.RESOURCE_NOT_FOUND;
+        String detail = ex.getMessage();
+        Problem problem = createProblemBuilder(status, problemType, detail)
+                .userMessage(detail)
+                .build();
+        return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+    }
+
+    @ExceptionHandler(EntityNotUsedException.class)
+    public ResponseEntity<Object> handleEntityNotUsedException(EntityNotUsedException ex,
+                                                                WebRequest request) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
         ProblemType problemType = ProblemType.RESOURCE_NOT_FOUND;
         String detail = ex.getMessage();
         Problem problem = createProblemBuilder(status, problemType, detail)

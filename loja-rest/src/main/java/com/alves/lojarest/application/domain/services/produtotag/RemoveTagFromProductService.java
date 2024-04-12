@@ -1,6 +1,7 @@
 package com.alves.lojarest.application.domain.services.produtotag;
 
 import com.alves.lojarest.application.domain.event.ProductEvent;
+import com.alves.lojarest.application.domain.exceptions.TagNotUsedException;
 import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.domain.models.Tag;
 import com.alves.lojarest.application.ports.in.product.FindProductByIdUseCase;
@@ -25,6 +26,11 @@ public class RemoveTagFromProductService implements RemoveTagFromProductUseCase 
         productEventPublisherPort.publisherEvent(new ProductEvent("RemoveTagfromProductService.removeTag(Long productId, Long tagId)"));
         Product product = findProductByIdUseCase.findById(productId);
         Tag tag = findTagByIdUseCase.findById(tagId);
+
+        if (!product.getTags().contains(tag)) {
+            throw new TagNotUsedException(tagId);
+        }
+
         product.getTags().remove(tag);
         product = updateProductUseCase.update(product);
         return product;

@@ -12,7 +12,7 @@ public class ProductConsumerAdapter implements ProductEventeConsumerUseCase {
     @Override
     @RabbitListener(queues = "${rabbitmq.queue.product.name}")
     public void consumer(ProductEvent productEvent) {
-        log.info(String.format("Consummer product event message -> %s", productEvent));
+        log.info(String.format("Consummer product event message ---> %s", productEvent));
     }
 
 }

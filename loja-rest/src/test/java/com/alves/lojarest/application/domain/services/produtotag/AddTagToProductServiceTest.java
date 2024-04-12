@@ -1,6 +1,7 @@
 package com.alves.lojarest.application.domain.services.produtotag;
 
 import com.alves.lojarest.application.domain.exceptions.ProductNotFoundException;
+import com.alves.lojarest.application.domain.exceptions.TagAlreadyAddedException;
 import com.alves.lojarest.application.domain.exceptions.TagNotFoundException;
 import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.domain.models.Tag;
@@ -39,8 +40,6 @@ class AddTagToProductServiceTest {
         when(findProductByIdUseCase.findById(product.getId())).thenReturn(product);
         when(findTagByIdUseCase.findById(tag.getId())).thenReturn(tag);
 
-        product.getTags().add(tag);
-        tag.getProducts().add(product);
         when(updateProductUseCase.update(product)).thenReturn(product);
 
         Product result = addTagToProductService.addTag(product.getId(), tag.getId());
@@ -51,6 +50,24 @@ class AddTagToProductServiceTest {
         verifyNoMoreInteractions(findTagByIdUseCase);
         verifyNoMoreInteractions(updateProductUseCase);
         assertTrue(result.getTags().contains(tag));
+    }
+
+    @Test
+    public void addTagFromProduct_whenTagAlredyAddedToProduct_ThrowsException() {
+        Tag tag = Instancio.create(Tag.class);
+        Product product = Instancio.create(Product.class);
+        when(findProductByIdUseCase.findById(product.getId())).thenReturn(product);
+        when(findTagByIdUseCase.findById(tag.getId())).thenReturn(tag);
+
+        product.getTags().add(tag);
+
+        assertThrows(TagAlreadyAddedException.class, ()-> addTagToProductService.addTag(product.getId(), tag.getId()));
+        verify(findProductByIdUseCase, times(1)).findById(product.getId());
+        verify(findTagByIdUseCase, times(1)).findById(tag.getId());
+        verify(updateProductUseCase, times(0)).update(product);
+        verifyNoMoreInteractions(findProductByIdUseCase);
+        verifyNoMoreInteractions(findTagByIdUseCase);
+        verifyNoMoreInteractions(updateProductUseCase);
     }
 
     @Test

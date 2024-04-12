@@ -13,7 +13,7 @@ public class TagConsumerAdapter implements TagEventeConsumerUseCase {
     @Override
     @RabbitListener(queues = "${rabbitmq.queue.tag.name}")
     public void consumer(TagEvent tagEvent) {
-        log.info(String.format("Consummer tag event message -->  %s", tagEvent));
+        log.info(String.format("Consummer tag event message --->  %s", tagEvent));
     }
 
 }

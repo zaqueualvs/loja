@@ -2,6 +2,7 @@ package com.alves.lojarest.application.domain.services.produtotag;
 
 import com.alves.lojarest.application.domain.exceptions.ProductNotFoundException;
 import com.alves.lojarest.application.domain.exceptions.TagNotFoundException;
+import com.alves.lojarest.application.domain.exceptions.TagNotUsedException;
 import com.alves.lojarest.application.domain.models.Product;
 import com.alves.lojarest.application.domain.models.Tag;
 import com.alves.lojarest.application.ports.in.product.FindProductByIdUseCase;
@@ -39,6 +40,8 @@ class RemoveTagFromProductServiceTest {
         when(findProductByIdUseCase.findById(product.getId())).thenReturn(product);
         when(findTagByIdUseCase.findById(tag.getId())).thenReturn(tag);
 
+        product.getTags().add(tag);
+
         when(updateProductUseCase.update(product)).thenReturn(product);
 
         Product result = removeTagFromProductService.removeTag(product.getId(), tag.getId());
@@ -49,6 +52,23 @@ class RemoveTagFromProductServiceTest {
         verifyNoMoreInteractions(findTagByIdUseCase);
         verifyNoMoreInteractions(updateProductUseCase);
         assertFalse(result.getTags().contains(tag));
+    }
+
+    @Test
+    public void removeTagFromProduct_whenTagdoesntExist_ThrowsException() {
+        Tag tag = Instancio.create(Tag.class);
+        Product product = Instancio.create(Product.class);
+        when(findProductByIdUseCase.findById(product.getId())).thenReturn(product);
+        when(findTagByIdUseCase.findById(tag.getId())).thenReturn(tag);
+
+        assertThrows(TagNotUsedException.class, () -> removeTagFromProductService.removeTag(product.getId(), tag.getId()));
+
+        verify(findProductByIdUseCase, times(1)).findById(product.getId());
+        verify(findTagByIdUseCase, times(1)).findById(tag.getId());
+        verify(updateProductUseCase, times(0)).update(product);
+        verifyNoMoreInteractions(findProductByIdUseCase);
+        verifyNoMoreInteractions(findTagByIdUseCase);
+        verifyNoMoreInteractions(updateProductUseCase);
     }
 
     @Test
