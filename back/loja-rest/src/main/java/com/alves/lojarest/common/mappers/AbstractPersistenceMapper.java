@@ -3,10 +3,10 @@ package com.alves.lojarest.common.mappers;
 import java.io.Serializable;
 
 public interface AbstractPersistenceMapper
-        <Domain extends Serializable,
-                Entity extends Serializable> {
+        <D extends Serializable,
+                E extends Serializable> {
 
-    Domain toDomain(Entity Entity);
+    D toDomain(E entity);
 
-    Entity toEntity(Domain domain);
+    E toEntity(D domain);
 }
