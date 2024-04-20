@@ -1,20 +1,16 @@
 .main-card{
   margin: 2em auto;
   text-align: center;
-  width: 60%;
-  height: 60%;
+  max-width: 60%;
   box-shadow:0 0 5px 0 #000
 }
 .title{
   display: flex;
   justify-content: center;
 }
-.buttom-card-product {
-  display: table-cell;
-  font-size: 14px;
-  min-width: 120px;
-  margin-top: 150px;
-  margin-left: 20px;
-  width: 30%;
+.selection-product{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
 }
-

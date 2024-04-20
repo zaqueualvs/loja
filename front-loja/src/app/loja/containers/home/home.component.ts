@@ -4,7 +4,6 @@ import {MatToolbar} from "@angular/material/toolbar";
 import {MatChip, MatChipSet} from "@angular/material/chips";
 import {MatIcon} from "@angular/material/icon";
 import {MatProgressBar} from "@angular/material/progress-bar";
-import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-home',
@@ -18,8 +17,7 @@ import {MatButton} from "@angular/material/button";
     MatIcon,
     MatCardContent,
     MatCardFooter,
-    MatProgressBar,
-    MatButton
+    MatProgressBar
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
