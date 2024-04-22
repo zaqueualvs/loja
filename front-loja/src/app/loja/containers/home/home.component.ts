@@ -4,6 +4,7 @@ import {MatToolbar} from "@angular/material/toolbar";
 import {MatChip, MatChipSet} from "@angular/material/chips";
 import {MatIcon} from "@angular/material/icon";
 import {MatProgressBar} from "@angular/material/progress-bar";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -24,4 +25,13 @@ import {MatProgressBar} from "@angular/material/progress-bar";
 })
 export class HomeComponent {
 
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {
+  }
+
+  navigateToProduct(){
+    this.router.navigate(['products'], {relativeTo: this.route});
+  }
 }

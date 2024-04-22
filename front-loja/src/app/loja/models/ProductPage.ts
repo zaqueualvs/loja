@@ -1,6 +1,6 @@
 import {Product} from './Product';
 
-export interface Tag{
+export interface ProductPage{
   products: Product[];
   totalElements: number;
   totalPages?: number;

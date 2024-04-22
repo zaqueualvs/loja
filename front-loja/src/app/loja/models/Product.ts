@@ -1,6 +1,6 @@
 import {Tag} from './Tag';
 
-export interface Tag{
+export interface Product{
   id: string;
   name: string;
   description: string;

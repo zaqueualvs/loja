@@ -7,14 +7,14 @@
     <p> Aqui está um exemplo de loja que contem produtos!</p>
   </mat-card-content>
 
-  <mat-chip-set aria-label="selection" class="selection">
+  <mat-chip-set aria-label="selection" class="selection" (click)="navigateToProduct()">
     <mat-chip color="accent" class="selection-product">
       <mat-icon aria-hidden="false" fontIcon="list" class="selection-product-icon"></mat-icon>
       Ver lista de produtos
     </mat-chip>
   </mat-chip-set>
 
-  <mat-card-footer>
+  <mat-card-footer class="card-footer">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </mat-card-footer>
 </mat-card>
