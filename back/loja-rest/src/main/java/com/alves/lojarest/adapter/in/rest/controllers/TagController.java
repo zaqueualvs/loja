@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @io.swagger.v3.oas.annotations.tags.Tag(name = "Tag", description = "api tag operations")
 @RestController
-@RequestMapping(value = "tags")
+@RequestMapping(value = "api/tags")
 @RequiredArgsConstructor
 public class TagController {
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @io.swagger.v3.oas.annotations.tags.Tag(name = "ProductTag", description = "api for add tag to product")
 @RestController
-@RequestMapping(value = "products/{productId}/tags/{tagId}")
+@RequestMapping(value = "api/products/{productId}/tags/{tagId}")
 @AllArgsConstructor
 public class ProductTagController {
 

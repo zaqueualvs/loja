@@ -1,0 +1,15 @@
+
+—
+java:S6201S"€Replace this instanceof check and cast with 'instanceof MethodArgumentTypeMismatchException methodargumenttypemismatchexception'(²…Î
+|
+java:S6201p"fReplace this instanceof check and cast with 'instanceof InvalidFormatException invalidformatexception'(ÇÂ²Ş
+
+java:S6201r"jReplace this instanceof check and cast with 'instanceof PropertyBindingException propertybindingexception'(“ƒòA
+J
+java:S1172’".Remove this unused method parameter "headers".(ê…—íûÿÿÿÿ
+i
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+e
+java:S6201ˆ"NReplace this instanceof check and cast with 'instanceof FieldError fielderror'(‡£¥à
+]
+java:S6201£"FReplace this instanceof check and cast with 'instanceof String string'(òÌŠª

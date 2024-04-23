@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @io.swagger.v3.oas.annotations.tags.Tag(name = "Product", description = "api product operations")
 @RestController
-@RequestMapping(value = "products")
+@RequestMapping(value = "api/products")
 @RequiredArgsConstructor
 public class ProductController {
 
